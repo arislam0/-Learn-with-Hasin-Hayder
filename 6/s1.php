@@ -32,3 +32,4 @@ more text
 EOD;
 
 echo $heredpc1."\n";
+echo $heredpc1."\n";

@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+       <title> PHP syntax</title>
+	   
+	   <style>
+	   
+	       .phpcode{ width:900px; margin: 0 auto; background:<?php echo "#ddd" ?>;}
+		   
+		   .headeroption, .footeroption{background:#444;color:#fff;text-align:center;padding:20px;}
+		   
+		   .headeroption h2,.footeroption h2{margin: 0;}
+		   
+		   .maincontent{ min-height:500px;padding:20px;}
+	   
+	   </style>
+	   
+</head>
+
+<body>
+     
+<div class="phpcode">
+	
+   <section class="headeroption">
+
+        <h2> <?php echo "AR ISLAM" ?> </h2>
+
+   </section>
+
+   <section class="maincontent">
+ 
+ 
+               <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                Name: <input type="text" name="fname">
+                  <input type="submit">
+               </form>
+			   
+			   <?php
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // collect value of input field
+    $name = $_REQUEST['fname'];
+    if (empty($name)) {
+        echo "Name is empty";
+    } else {
+        echo $name;
+    }
+}
+?>
+
+   </section>
+
+    <section class="footeroption">
+
+            <h2> <?php echo "www.arislam.com" ?> </h2>
+
+    </section>
+	 
+
+
+</div>
+</body>
+</html>

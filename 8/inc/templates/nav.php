@@ -2,9 +2,20 @@
 
     <div class="float-left">
     <p>
-       <a href="index.php?task=report">All Students</a> |
-       <a href="index.php?task=add">Add New Students</a> |
+       <a href="index.php?task=report">All Students</a>
+
+       <?php if ( hasPrivilege() ): ?>
+       |
+      <a href="index.php?task=add">Add New Students</a>
+       <?php endif;?>
+      <?php
+if ( isAdmin() ):
+?>
+       |
        <a href="index.php?task=seed">Seed</a>
+       <?php
+endif;
+?>
     </p>
     </div>
 

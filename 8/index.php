@@ -5,8 +5,21 @@ require_once "inc/function.php";
 $info = '';
 $task = $_GET['task'] ?? 'report';
 $error = $_GET['error'] ?? '0';
-
+if ( 'edit' == $task ) {
+    if ( !hasPrivilege() ) {
+        header( 'location: index.php?task=report' );
+    }
+}
+if ( 'add' == $task ) {
+    if ( !hasPrivilege() ) {
+        header( 'location: index.php?task=report' );
+    }
+}
 if ( 'delete' == $task ) {
+    if ( !isAdmin() ) {
+        header( 'location: index.php?task=report' );
+        return;
+    }
     $id = filter_input( INPUT_GET, 'id', FILTER_SANITIZE_STRING );
     if ( $id > 0 ) {
         deleteStudent( $id );
@@ -15,6 +28,10 @@ if ( 'delete' == $task ) {
 }
 
 if ( 'seed' == $task ) {
+    if ( !isAdmin() ) {
+        header( 'location: index.php?task=report' );
+        return;
+    }
     seed();
     $info = "Seeding is completed";
 }
@@ -144,26 +161,26 @@ if ( 'edit' == $task ):
     $student = getStudent( $id );
     if ( $student ):
     ?>
-						          <div class="row">
-						           <div class="column column-60 column-offset-20">
-						              <form  method="post">
-						                <input type="hidden" value="<?php echo $id ?>" name="id">
+														          <div class="row">
+														           <div class="column column-60 column-offset-20">
+														              <form  method="post">
+														                <input type="hidden" value="<?php echo $id ?>" name="id">
 
-						                 <label for="fname">First Name</label>
-						                 <input type="text" name="fname" id="fname" value="<?php echo $student['fname']; ?>" >
+														                 <label for="fname">First Name</label>
+														                 <input type="text" name="fname" id="fname" value="<?php echo $student['fname']; ?>" >
 
-						                 <label for="lname">Last Name</label>
-						                 <input type="text" name="lname" id="lname" value="<?php echo $student['lname']; ?>">
+														                 <label for="lname">Last Name</label>
+														                 <input type="text" name="lname" id="lname" value="<?php echo $student['lname']; ?>">
 
-						                 <label for="roll">Roll</label>
-						                 <input type="number" name="roll" id="roll" value="<?php echo $student['roll']; ?>">
+														                 <label for="roll">Roll</label>
+														                 <input type="number" name="roll" id="roll" value="<?php echo $student['roll']; ?>">
 
-						                 <button type="submit" class="button-primary" name="submit">Update</button>
+														                 <button type="submit" class="button-primary" name="submit">Update</button>
 
-						              </form>
-						           </div>
-						        </div>
-						        <?php
+														              </form>
+														           </div>
+														        </div>
+														        <?php
 endif;
 endif;?>
 

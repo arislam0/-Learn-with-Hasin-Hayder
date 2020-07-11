@@ -1,5 +1,4 @@
 <?php
-
 session_start( [
     'cookie_lifetime' => 100,
 ] );
@@ -100,10 +99,10 @@ if ( isset( $_SESSION['loggedin'] ) == true ) {
      <div class="row">
         <div class="column column-60 column-offset-20">
          <?php
-if ( $error ) {
+if ( $error ):
     echo "<blockquote>Username and Password didn't match</<blockquote>";
-}
-if ( false == isset( $_SESSION['loggedin'] ) ):
+endif;
+if ( false == $_SESSION['loggedin'] ):
 ?>
 </br>
 </br>

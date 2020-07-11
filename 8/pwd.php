@@ -1,4 +1,4 @@
 <?php
-// echo sha1( 'rabbit' );
+echo sha1( 'artt' );
 
-echo $_COOKIE['username'];
+// echo $_COOKIE['username'];
